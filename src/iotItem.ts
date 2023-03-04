@@ -29,12 +29,12 @@ export class IOTItem {
           }
           logger.debug(data);
           for (let i = 0; i < data.length; i++) {
-            const data = {};
+            const obj = {};
             for (let j = 0; j < columns.length; j++) {
-              data[columns[j].name] = data[i][j];
+              obj[columns[j].name] = data[i][j];
             }
 
-            rows.push(data);
+            rows.push(obj);
           }
         },
         success: function (error, stats) {
