@@ -14,6 +14,7 @@ import {
   ORIGIN,
   CREDENTIALS,
   PRESTO_HOST,
+  PRESTO_PORT,
   PRESTO_USER,
   PRESTO_AUTH,
   PRESTO_BASIC_USER,
@@ -94,6 +95,7 @@ class App {
     this.app.listen(this.port, () => {
       logger.info(`NODE ENV: ${this.env}`);
       logger.info(`PRESTO_HOST: ${PRESTO_HOST}`);
+      logger.info(`PRESTO_PORT: ${PRESTO_PORT}`);
       logger.info(`PRESTO_USER: ${PRESTO_USER}`);
       logger.info(`PRESTO_AUTH: ${PRESTO_AUTH}`);
       logger.info(`PRESTO_BASIC_USER: ${PRESTO_BASIC_USER}`);
