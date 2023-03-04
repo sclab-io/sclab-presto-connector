@@ -71,7 +71,8 @@ class App {
       const token = jwt.sign({ id: SECRET_KEY }, fs.readFileSync(JWT_PRIVATE_KEY_PATH), {
         algorithm: 'RS256',
       });
-      logger.info(`JWT ${token}`);
+      logger.info('Add authorization to Headers');
+      logger.info(`authorization: JWT ${token}`);
       this.app.use(jwtMiddleware);
     } catch (e) {
       logger.error(e);
