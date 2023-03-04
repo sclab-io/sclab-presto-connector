@@ -1,4 +1,4 @@
-SCLAB Prestor/Trino Connector
+SCLAB Presto/Trino Connector
 ==============================
 
 # usage
