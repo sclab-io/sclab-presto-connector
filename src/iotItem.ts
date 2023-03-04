@@ -48,16 +48,16 @@ export class IOTItem {
           client.publish(topic, Buffer.from(data, 'utf-8'));
           logger.info(`topic: ${topic}, data: ${data}`);
           rows = null;
+
+          setTimeout(func, queryItem.interval);
         },
         error: function (error) {
           logger.error(error);
           rows = null;
         },
       });
-
-      setTimeout(func, queryItem.interval);
     };
 
-    setTimeout(func, queryItem.interval);
+    func();
   }
 }
