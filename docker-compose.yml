@@ -1,9 +1,9 @@
 version: '3.7'
 
 services:
-  sclab-presto-connector-proxy:
+  proxy:
     image: nginx:alpine
-    container_name: proxy
+    container_name: sclab-presto-connectorproxy
     ports:
       - '9180:80'
     volumes:
