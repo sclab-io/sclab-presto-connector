@@ -1,7 +1,6 @@
 import { logger } from '@/utils/logger';
 import { config } from 'dotenv';
 import presto from 'presto-client';
-import JSONBig from 'json-bigint';
 
 config({ path: `.env.${process.env.NODE_ENV || 'development'}.local` });
 
@@ -16,6 +15,7 @@ export const {
   LOG_DIR,
   ORIGIN,
   PRESTO_HOST,
+  PRESTO_PORT,
   PRESTO_USER,
   PRESTO_AUTH,
   PRESTO_BASIC_USER,
@@ -73,18 +73,18 @@ Object.keys(process.env).forEach(function (key) {
 
 let prestoOptions: any = {
   host: PRESTO_HOST,
+  port: PRESTO_PORT,
   user: PRESTO_USER,
-  jsonParser: JSONBig,
 };
 
 if (PRESTO_AUTH) {
   if (PRESTO_AUTH.toUpperCase() === 'BASIC') {
     prestoOptions.basic_auth = {
       user: PRESTO_BASIC_USER,
-      password: PRESTO_BASIC_PASSWORD,
+      password: PRESTO_BASIC_PASSWORD || '',
     };
   } else if (PRESTO_AUTH.toUpperCase() === 'CUSTOM') {
-    prestoOptions.custom_auth = PRESTO_CUSTOM_AUTH;
+    prestoOptions.custom_auth = PRESTO_CUSTOM_AUTH || '';
   }
 }
 

@@ -10,6 +10,7 @@ class APIController {
       query: this.queryItem.query,
       state: function (error, query_id, stats) {
         if (error) {
+          logger.error(error);
           next(error);
           return;
         }
@@ -17,6 +18,7 @@ class APIController {
       },
       columns: function (error, data) {
         if (error) {
+          logger.error(error);
           next(error);
           return;
         }
@@ -24,21 +26,23 @@ class APIController {
       },
       data: function (error, data, columns, stats) {
         if (error) {
+          logger.error(error);
           next(error);
           return;
         }
         logger.debug(data);
         for (let i = 0; i < data.length; i++) {
-          const data = {};
+          const obj = {};
           for (let j = 0; j < columns.length; j++) {
-            data[columns[j].name] = data[i][j];
+            obj[columns[j].name] = data[i][j];
           }
 
-          rows.push(data);
+          rows.push(obj);
         }
       },
       success: function (error, stats) {
         if (error) {
+          logger.error(error);
           next(error);
           return;
         }
@@ -55,6 +59,7 @@ class APIController {
         rows = null;
       },
       error: function (error) {
+        logger.error(error);
         rows = null;
         next(error);
       },
