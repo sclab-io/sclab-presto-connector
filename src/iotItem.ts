@@ -8,6 +8,10 @@ export class IOTItem {
     logger.info(`MQTT push query generated: ${topic}`);
 
     const func = async () => {
+      if (!client.connected) {
+        setTimeout(func, queryItem.interval);
+        return;
+      }
       let rows = [];
       PrestoClient.execute({
         query: queryItem.query,
