@@ -67,20 +67,26 @@ CREDENTIALS=true
 
 ## start
 ~~~bash
+# docker compose
+$ ./run.sh
+
+# nodejs
 $ npm run start
 
 # pm2
 $ npm run deploy:prod
-
-# docker compose
-$ docker compose up -d
 ~~~
 
 ## stop
 ~~~bash
+# docker compose
+$ ./stop.sh
+
 # pm2
 $ ./node_modules/pm2/bin/pm2 stop 0
+~~~
 
-# docker compose
-$ docker compose down
+## logs
+~~~bash
+$ ./logs.sh
 ~~~
