@@ -21,7 +21,8 @@ $ openssl rsa -in ./jwt/jwtRS256.key -pubout -outform PEM -out ./jwt/jwtRS256.ke
 $ vi .env.production.local
 
 # Presto/Trino Connection
-PRESTO_HOST=trino
+PRESTO_HOST=localhost
+PRESTO_PORT=8080
 PRESTO_USER=sclab-trino-client
 
 # BASIC AUTH
