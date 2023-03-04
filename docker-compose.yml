@@ -30,8 +30,8 @@ services:
       - "8080:8080"
     image: "trinodb/trino:latest"
     volumes:
-      - ./etc:/usr/lib/trino/etc:ro
-      - ./catalog:/etc/trino/catalog
+      - ./presto/etc:/usr/lib/trino/etc:ro
+      - ./presto/catalog:/etc/trino/catalog
 
 networks:
   backend:
