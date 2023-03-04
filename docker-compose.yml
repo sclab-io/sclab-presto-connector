@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  proxy:
+  sclab-presto-connector-proxy:
     image: nginx:alpine
     container_name: proxy
     ports:
