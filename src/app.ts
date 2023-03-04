@@ -24,8 +24,6 @@ import {
   MQTT_CLIENT_ID,
   MQTT_ID,
   MQTT_PASSWORD,
-  QUERY_START,
-  QUERY_END,
   QueryItems,
   SECRET_KEY,
   JWT_PRIVATE_KEY_PATH,
@@ -106,8 +104,6 @@ class App {
       logger.info(`MQTT_CLIENT_ID: ${MQTT_CLIENT_ID}`);
       logger.info(`MQTT_ID: ${MQTT_ID}`);
       logger.info(`MQTT_PASSWORD: ${MQTT_PASSWORD}`);
-      logger.info(`QUERY_START: ${QUERY_START}`);
-      logger.info(`QUERY_END: ${QUERY_END}`);
       logger.info(`🚀 App listening on the port ${this.port}`);
       logger.info(`=================================`);
     });
