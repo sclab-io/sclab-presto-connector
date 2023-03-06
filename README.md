@@ -60,12 +60,19 @@ MQTT_CLIENT_ID=your-client-id/1
 MQTT_ID=your-id
 MQTT_PASSWORD=your-password
 
+# SCLAB IoT
+# MQTT_TOPIC=yourtopic/
+# MQTT_HOST=yourhost
+# MQTT_CLIENT_ID=your-client-id/1
+# MQTT_ID=your-id
+# MQTT_PASSWORD=your-password
+
 # QUERY_#=mqtt;query;topic;interval ms
 # QUERY_#=api;query;endPoint
-QUERY_0=mqtt;SELECT ROUND( RAND() * 100 ) AS value, NOW() AS datetime;test0;1000
-QUERY_1=mqtt;SELECT ROUND( RAND() * 1000 ) AS value, NOW() AS datetime;test1;5000
-QUERY_2=api;SELECT ROUND( RAND() * 100 ) AS value, NOW() AS datetime;/api/1
-QUERY_3=api;SELECT ROUND( RAND() * 1000 ) AS value, NOW() AS datetime;/api/2
+QUERY_1=api;SELECT ROUND( RAND() * 100 ) AS value, NOW() AS datetime;/api/1
+QUERY_2=api;SELECT ROUND( RAND() * 1000 ) AS value, NOW() AS datetime;/api/2
+# QUERY_3=mqtt;SELECT ROUND( RAND() * 100 ) AS value, NOW() AS datetime;test0;1000
+# QUERY_4=mqtt;SELECT ROUND( RAND() * 1000 ) AS value, NOW() AS datetime;test1;5000
 
 # PORT
 PORT=3000
@@ -82,17 +89,6 @@ LOG_DIR=../logs
 # CORS
 ORIGIN=your.domain.com
 CREDENTIALS=true
-~~~
-## install nodejs
-~~~bash
-curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
-sudo yum install nodejs
-~~~
-
-## build source
-~~~bash
-$ npm install
-$ npm run build
 ~~~
 
 ## start
@@ -129,3 +125,16 @@ authorization: JWT yourkey
 ~~~
 
 You can find your key information through the logs.
+
+# Build source
+## install nodejs
+~~~bash
+curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
+sudo yum install nodejs
+~~~
+
+## build source
+~~~bash
+$ npm install
+$ npm run build
+~~~
