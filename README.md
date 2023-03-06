@@ -109,3 +109,12 @@ $ ./node_modules/pm2/bin/pm2 stop 0
 ~~~bash
 $ ./logs.sh
 ~~~
+
+## access API end point
+To access the API, you need to include authorization information in the Request Header in the following format:
+
+~~~
+authorization: JWT yourkey
+~~~
+
+You can find your key information through the logs.
