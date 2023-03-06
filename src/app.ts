@@ -7,6 +7,7 @@ import hpp from 'hpp';
 import morgan from 'morgan';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import { logger, stream } from '@utils/logger';
 import {
   NODE_ENV,
   PORT,
@@ -29,10 +30,10 @@ import {
   SECRET_KEY,
   JWT_PRIVATE_KEY_PATH,
   LOG_DIR,
+  PrestoClient,
 } from '@config';
 import { Routes } from '@interfaces/routes.interface';
 import errorMiddleware from '@middlewares/error.middleware';
-import { logger, stream } from '@utils/logger';
 import { QueryItem, QueryType } from './config/index';
 import APIRoute from './routes/api_route';
 import jwt from 'jsonwebtoken';
@@ -52,7 +53,7 @@ class App {
     this.port = PORT || 3000;
 
     logger.info(`=================================`);
-
+    this.checkConnectionInformation();
     this.initializeMiddlewares();
     this.generateJWTKey();
     this.createAPIRoutes(routes);
@@ -60,6 +61,28 @@ class App {
     //this.initializeSwagger();
     this.initializeErrorHandling();
     this.initializeIoT();
+  }
+
+  public checkConnectionInformation() {
+    // check connection
+    try {
+      PrestoClient.execute({
+        query: 'select 1',
+        success: function (error: any, stats: any) {
+          if (error) {
+            return;
+          }
+          logger.info('Presto/Trino connection success');
+        },
+        error: (error: any) => {
+          logger.error(error);
+          logger.info(`Cannot connect to Presto/Trino. Please check your .env.${this.env}.local file.`);
+          process.exit();
+        },
+      });
+    } catch (e) {
+      logger.error(e);
+    }
   }
 
   public initializeIoT() {
