@@ -53,7 +53,7 @@ PRESTO_BASIC_USER=user
 #PRESTO_AUTH=CUSTOM
 #PRESTO_CUSTOM_AUTH=Sets HTTP Authorization header with the provided string.
 
-# SCLAB IoT (If you don't need to using MQTT remove this env)
+# SCLAB IoT (Remove this environment if you do not need to use MQTT)
 MQTT_TOPIC=yourtopic/
 MQTT_HOST=yourhost
 MQTT_CLIENT_ID=your-client-id/1
