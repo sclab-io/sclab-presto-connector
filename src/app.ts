@@ -28,6 +28,7 @@ import {
   QueryItems,
   SECRET_KEY,
   JWT_PRIVATE_KEY_PATH,
+  LOG_DIR,
 } from '@config';
 import { Routes } from '@interfaces/routes.interface';
 import errorMiddleware from '@middlewares/error.middleware';
@@ -95,6 +96,7 @@ class App {
   public listen() {
     this.app.listen(this.port, () => {
       logger.info(`NODE ENV: ${this.env}`);
+      logger.info(`LOG_DIR: ${LOG_DIR}`);
       logger.info(`PRESTO_HOST: ${PRESTO_HOST}`);
       logger.info(`PRESTO_PORT: ${PRESTO_PORT}`);
       logger.info(`PRESTO_USER: ${PRESTO_USER}`);
