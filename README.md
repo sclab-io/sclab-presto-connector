@@ -121,7 +121,7 @@ $ ./logs.sh
 To access the API, you need to include authorization information in the Request Header in the following format:
 
 ~~~
-authorization: JWT yourkey
+authorization: yourkey
 ~~~
 
 You can find your key information through the logs.

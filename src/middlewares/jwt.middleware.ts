@@ -12,18 +12,23 @@ try {
 }
 
 export const jwtMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
-    jwt.verify(req.headers.authorization.split(' ')[1], pubKey, function (err, decode: any) {
+  if (req.headers && req.headers.authorization) {
+    let key: string = req.headers.authorization;
+    if (key.startsWith('JWT ')) {
+      key = key.replace('JWT ', '');
+    }
+    jwt.verify(key, pubKey, function (err, decode: any) {
       if (err || decode.id !== SECRET_KEY) {
-        res.status(500).send({
-          message: err,
+        res.status(400);
+        res.end({
+          message: 'The JWT token value is malformed. Please check the JWT token value and verify the key in the log.',
         });
       } else {
         next();
       }
     });
   } else {
-    res.status(200);
+    res.status(401);
     res.end('authorization header is empty');
   }
 };

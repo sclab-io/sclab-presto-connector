@@ -96,7 +96,7 @@ class App {
         algorithm: 'RS256',
       });
       logger.info('Add authorization to Headers');
-      logger.info(`authorization: JWT ${token}`);
+      logger.info(`authorization: ${token}`);
       this.app.use(jwtMiddleware);
     } catch (e) {
       logger.error(e);
