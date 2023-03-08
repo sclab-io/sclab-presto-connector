@@ -5,10 +5,12 @@ SCLAB Presto/Trino Connector
 This connector provides functionality for retrieving data using Presto/Trino in SCLAB Studio.
 
 ## Features
-- Automatic generation of API endpoint
-- API security using JWT token
-- Automatic MQTT connection and message transmission
-- Processing of data into JSON format
+- Connect to Presto/Trino
+- MQTT message publish using SQL Query with interval
+- Create REST API endpoint with SQL Query
+- JWT for HTTP authorization
+- Processing of result data into JSON format
+
 
 By adding a query in the format of "QUERY_1=mqtt;query;topic;interval ms" to the .env file, SQL is automatically executed to connect and retrieve data from SCLAB.
 
