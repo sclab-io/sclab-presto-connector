@@ -62,13 +62,6 @@ MQTT_CLIENT_ID=your-client-id/1
 MQTT_ID=your-id
 MQTT_PASSWORD=your-password
 
-# SCLAB IoT
-# MQTT_TOPIC=yourtopic/
-# MQTT_HOST=yourhost
-# MQTT_CLIENT_ID=your-client-id/1
-# MQTT_ID=your-id
-# MQTT_PASSWORD=your-password
-
 # QUERY_#=mqtt;query;topic;interval ms
 # QUERY_#=api;query;endPoint
 QUERY_1=api;SELECT ROUND( RAND() * 100 ) AS value, NOW() AS datetime;/api/1
