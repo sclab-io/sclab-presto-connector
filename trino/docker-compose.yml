@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  trino:
+    ports:
+      - "8080:8080"
+    image: "trinodb/trino:latest"
+    volumes:
+      - ./etc:/usr/lib/trino/etc:ro
+      - ./catalog:/etc/trino/catalog
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  trino-data:
+    driver: local

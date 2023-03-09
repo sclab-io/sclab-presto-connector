@@ -27,17 +27,6 @@ services:
       - backend
     links:
       - trino  
-
-  trino:
-    ports:
-      - "8080:8080"
-    image: "trinodb/trino:latest"
-    volumes:
-      - ./presto/etc:/usr/lib/trino/etc:ro
-      - ./presto/catalog:/etc/trino/catalog
-    networks:
-      - backend
-
 networks:
   backend:
     driver: bridge
