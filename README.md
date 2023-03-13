@@ -104,7 +104,7 @@ $ npm run deploy:prod
 $ ./stop.sh
 
 # pm2
-$ ./node_modules/pm2/bin/pm2 stop 0
+$ ./node_modules/.bin/pm2 stop 0
 ~~~
 
 ## logs
