@@ -71,6 +71,15 @@ Object.keys(process.env).forEach(function (key) {
   QueryItems.push(queryItem);
 });
 
+// BigInt bug fix to string
+BigInt.prototype['toJSON'] = function () {
+  console.log(Number.MAX_SAFE_INTEGER);
+  if (this > Number.MAX_SAFE_INTEGER) {
+    return this.toString();
+  }
+  return parseInt(this.toString(), 10);
+};
+
 let prestoOptions: any = {
   host: PRESTO_HOST,
   port: PRESTO_PORT,
