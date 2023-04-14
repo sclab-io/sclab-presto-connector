@@ -17,3 +17,21 @@ export const isEmpty = (value: string | number | object): boolean => {
     return false;
   }
 };
+
+export const getPlaceHolders = (sql: string): string[] => {
+  const regex = /\${(\w+)}/g;
+  const placeholders = [];
+
+  let match;
+  while ((match = regex.exec(sql)) !== null) {
+    placeholders.push(match[1]);
+  }
+
+  return placeholders;
+};
+
+export const replaceString = (sql: string, map: { [key: string]: string }): string => {
+  const regex = /\${(\w+)}/g;
+
+  return sql.replace(regex, (match, key) => map[key]);
+};

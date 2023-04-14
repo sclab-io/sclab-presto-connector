@@ -1,18 +1,27 @@
-import request from 'supertest';
-import App from '@/app';
-import IndexRoute from '@routes/index.route';
+import { getPlaceHolders, replaceString } from '../utils/util';
 
-afterAll(async () => {
-  await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
-});
+describe('설정을과 파라미터를 통해 sql을 만들어주는 기능 테스트', () => {
+  test('getPlaceHolders', () => {
+    const sql = "select ${field} from ${table} where name='${name}'";
+    const map = {
+      field: '*',
+      table: 'member',
+      name: '홍길동',
+    };
 
-describe('Testing Index', () => {
-  describe('[GET] /', () => {
-    it('response statusCode 200', () => {
-      const indexRoute = new IndexRoute();
-      const app = new App([indexRoute]);
+    const placeHolders = getPlaceHolders(sql);
+    expect(placeHolders).toEqual(['field', 'table', 'name']);
+  });
 
-      return request(app.getServer()).get(`${indexRoute.path}`).expect(200);
-    });
+  test('replaceString', () => {
+    const sql = "select ${field} from ${table} where name='${name}'";
+    const map = {
+      field: '*',
+      table: 'member',
+      name: '홍길동',
+    };
+
+    const newSQL = replaceString(sql, map);
+    expect(newSQL).toEqual("select * from member where name='홍길동'");
   });
 });
