@@ -1,6 +1,6 @@
 import { getPlaceHolders, replaceString } from '../utils/util';
 
-describe('설정을과 파라미터를 통해 sql을 만들어주는 기능 테스트', () => {
+describe('설정과 파라미터를 통해 sql을 만들어주는 기능 테스트', () => {
   test('getPlaceHolders', () => {
     const sql = "select ${field} from ${table} where name='${name}'";
     const map = {
