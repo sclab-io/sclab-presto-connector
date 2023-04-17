@@ -65,7 +65,7 @@ MQTT_PASSWORD=your-password
 # QUERY_#=mqtt;query;topic;interval ms
 # QUERY_#=api;query;endPoint
 QUERY_1=api;SELECT ROUND( RAND() * 100 ) AS value, NOW() AS datetime;/api/1
-QUERY_2=api;SELECT ROUND( RAND() * 1000 ) AS value, NOW() AS datetime;/api/2
+QUERY_2=api;SELECT ${field} from ${table} where name="${name}";/api/2
 # QUERY_3=mqtt;SELECT ROUND( RAND() * 100 ) AS value, NOW() AS datetime;test0;1000
 # QUERY_4=mqtt;SELECT ROUND( RAND() * 1000 ) AS value, NOW() AS datetime;test1;5000
 
