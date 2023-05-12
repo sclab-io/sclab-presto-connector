@@ -18,17 +18,27 @@ export const jwtMiddleware = (req: Request, res: Response, next: NextFunction) =
       key = key.replace('JWT ', '');
     }
     jwt.verify(key, pubKey, function (err, decode: any) {
-      if (err || (decode && decode.id !== SECRET_KEY)) {
-        res.status(400);
-        res.end({
-          message: 'The JWT token value is malformed. Please check the JWT token value and verify the key in the log.',
+      if (err !== null || (decode && decode.id !== SECRET_KEY)) {
+        res.writeHead(500, {
+          'Content-Type': 'application/json',
         });
+        res.end(
+          JSON.stringify({
+            message: 'The JWT token value is malformed. Please check the JWT token value and verify the key in the log.',
+          }),
+        );
       } else {
         next();
       }
     });
   } else {
-    res.status(401);
-    res.end('authorization header is empty');
+    res.writeHead(401, {
+      'Content-Type': 'application/json',
+    });
+    res.end(
+      JSON.stringify({
+        message: 'authorization header is empty',
+      }),
+    );
   }
 };

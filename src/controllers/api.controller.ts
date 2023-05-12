@@ -47,7 +47,6 @@ class APIController {
           message: 'Query item empty',
         }),
       );
-      res.end('Query item empty');
       return;
     }
 
