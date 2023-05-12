@@ -26,7 +26,7 @@ class APIController {
         }
       }
 
-      console.log(queryData, valueObj, paramKeys);
+      logger.info(queryData, valueObj, paramKeys);
 
       // make final query
       return replaceString(query, valueObj);
@@ -56,7 +56,7 @@ class APIController {
     try {
       sql = this.mappingRequestData(sql, req.query, !!SQL_INJECTION);
     } catch (e) {
-      console.error(e);
+      logger.error(e);
       res.writeHead(400, {
         'Content-Type': 'application/json',
       });
@@ -67,7 +67,7 @@ class APIController {
       );
     }
 
-    console.info(`RUN SQL : ${sql}`);
+    logger.info(`RUN SQL : ${sql}`);
     PrestoClient.execute({
       query: sql,
       state: function (error, query_id, stats) {

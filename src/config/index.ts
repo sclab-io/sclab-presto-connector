@@ -74,7 +74,6 @@ Object.keys(process.env).forEach(function (key) {
 
 // BigInt bug fix to string
 BigInt.prototype['toJSON'] = function () {
-  console.log(Number.MAX_SAFE_INTEGER);
   if (this > Number.MAX_SAFE_INTEGER) {
     return this.toString();
   }
