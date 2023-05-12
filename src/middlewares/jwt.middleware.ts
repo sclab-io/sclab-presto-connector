@@ -18,7 +18,7 @@ export const jwtMiddleware = (req: Request, res: Response, next: NextFunction) =
       key = key.replace('JWT ', '');
     }
     jwt.verify(key, pubKey, function (err, decode: any) {
-      if (err || decode.id !== SECRET_KEY) {
+      if (err || !decode || decode.id !== SECRET_KEY) {
         res.status(400);
         res.end({
           message: 'The JWT token value is malformed. Please check the JWT token value and verify the key in the log.',
