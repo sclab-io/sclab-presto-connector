@@ -1,6 +1,6 @@
 {
   "name": "sclab-presto-connector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "TypeScript + Express API Server",
   "author": "",
   "license": "ISC",
