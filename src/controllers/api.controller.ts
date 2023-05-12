@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
-import { QueryItem, PrestoClient } from '../config/index';
+import { QueryItem, PrestoClient, SQL_INJECTION } from '../config/index';
 import { logger } from '@/utils/logger';
 import { getPlaceHolders, hasSql, replaceString } from '@/utils/util';
 
 class APIController {
-  mappingRequestData(query: string, queryData: any): string {
+  mappingRequestData(query: string, queryData: any, isCheckInjection: boolean = false): string {
     // data mapping
     const paramKeys = getPlaceHolders(query);
 
@@ -16,6 +16,12 @@ class APIController {
         paramKey = paramKeys[i];
         reqData = queryData[paramKey];
         if (reqData !== undefined && reqData !== null) {
+          // check sql injection
+          if (isCheckInjection) {
+            if (hasSql(reqData)) {
+              throw new Error(`SQL inject detect with final query data, ${paramKey}, ${reqData}, ${this.queryItem.endPoint}`);
+            }
+          }
           valueObj[paramKey] = reqData;
         }
       }
@@ -47,10 +53,10 @@ class APIController {
 
     let sql = this.queryItem.query;
 
-    sql = this.mappingRequestData(sql, req.query);
-    // check sql injection
-    if (hasSql(sql)) {
-      logger.info(`SQL inject detect with final query data, ${sql}, ${this.queryItem.query}, ${this.queryItem.endPoint}`);
+    try {
+      sql = this.mappingRequestData(sql, req.query, !!SQL_INJECTION);
+    } catch (e) {
+      console.error(e);
       res.writeHead(400, {
         'Content-Type': 'application/json',
       });
@@ -59,9 +65,9 @@ class APIController {
           message: 'SQL inject data detected.',
         }),
       );
-      return;
     }
 
+    console.info(`RUN SQL : ${sql}`);
     PrestoClient.execute({
       query: sql,
       state: function (error, query_id, stats) {

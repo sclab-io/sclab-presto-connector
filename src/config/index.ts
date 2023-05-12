@@ -27,6 +27,7 @@ export const {
   MQTT_CLIENT_ID,
   MQTT_ID,
   MQTT_PASSWORD,
+  SQL_INJECTION,
 } = process.env;
 
 export interface QueryItem {

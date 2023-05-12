@@ -31,6 +31,7 @@ import {
   JWT_PRIVATE_KEY_PATH,
   LOG_DIR,
   PrestoClient,
+  SQL_INJECTION,
 } from '@config';
 import { Routes } from '@interfaces/routes.interface';
 import errorMiddleware from '@middlewares/error.middleware';
@@ -111,7 +112,7 @@ class App {
       if (queryItem.type === QueryType.API) {
         const route: Routes = new APIRoute(queryItem);
         routes.push(route);
-        logger.info(`API query end point generated: ${queryItem.endPoint}`);
+        logger.info(`API query end point generated: ${queryItem.endPoint}\nSQL: ${queryItem.query}`);
       }
     }
   }
@@ -132,6 +133,7 @@ class App {
       logger.info(`MQTT_CLIENT_ID: ${MQTT_CLIENT_ID}`);
       logger.info(`MQTT_ID: ${MQTT_ID}`);
       logger.info(`MQTT_PASSWORD: ${MQTT_PASSWORD}`);
+      logger.info(`SQL_INJECTION: ${SQL_INJECTION}`);
       logger.info(`🚀 App listening on the port ${this.port}`);
       logger.info(`=================================`);
     });
