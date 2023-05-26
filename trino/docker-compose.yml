@@ -7,6 +7,7 @@ services:
     image: "trinodb/trino:latest"
     volumes:
       - ./config:/etc/trino
+      - ./plugin:/usr/lib/trino/plugin
     networks:
       - backend
 
