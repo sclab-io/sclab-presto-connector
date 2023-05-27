@@ -11,6 +11,12 @@ services:
     restart: 'unless-stopped'
     networks:
       - backend
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "10"
+        
   sclab-presto-connector:
     build:
       context: ./
@@ -25,6 +31,11 @@ services:
     restart: 'unless-stopped'
     networks:
       - backend
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "10"
 networks:
   backend:
     driver: bridge

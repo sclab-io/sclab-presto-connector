@@ -10,7 +10,11 @@ services:
       - ./plugin:/usr/lib/trino/plugin
     networks:
       - backend
-
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "10"
 networks:
   backend:
     driver: bridge
