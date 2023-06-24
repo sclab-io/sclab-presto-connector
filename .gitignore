@@ -131,3 +131,4 @@ dist
 
 jwt/
 presto/
+.DS_Store
