@@ -5,6 +5,8 @@ services:
     ports:
       - "8080:8080"
     image: "trinodb/trino:latest"
+    environment:
+      - TZ=Asia/Seoul
     volumes:
       - ./config:/etc/trino
     networks:
