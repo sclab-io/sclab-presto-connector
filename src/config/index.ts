@@ -28,18 +28,22 @@ export const {
   MQTT_ID,
   MQTT_PASSWORD,
   SQL_INJECTION,
+  MY_BATIS_FILE_FOLDER,
 } = process.env;
 
 export interface QueryItem {
   type: string;
-  query: string;
+  query?: string;
   topic?: string;
   interval?: number;
   endPoint?: string;
+  namespace?: string;
+  queryId?: string;
+  inputParams?: JSON;
 }
 
 export const QueryItems: QueryItem[] = [];
-export const QueryType: { API: string; MQTT: string } = { API: 'api', MQTT: 'mqtt' };
+export const QueryType: { API: string; MQTT: string; MYBATIS: string } = { API: 'api', MQTT: 'mqtt', MYBATIS: 'mybatis' };
 Object.keys(process.env).forEach(function (key) {
   if (!key.startsWith('QUERY_')) {
     return;
@@ -64,6 +68,16 @@ Object.keys(process.env).forEach(function (key) {
         type: queryType,
         query: queryInfo[1],
         endPoint: queryInfo[2],
+      };
+      break;
+    }
+
+    case QueryType.MYBATIS: {
+      queryItem = {
+        type: queryType,
+        namespace: queryInfo[1],
+        queryId: queryInfo[2],
+        endPoint: queryInfo[3],
       };
       break;
     }
