@@ -67,8 +67,14 @@ if (process.env.NODE_ENV === 'production') {
   logger.exitOnError = false;
   console.log = (...args) => logger.info.call(logger, ...args);
   console.info = (...args) => logger.info.call(logger, ...args);
-  console.warn = (...args) => logger.warn.call(logger, ...args);
-  console.error = (...args) => console.error.call(logger, ...args);
+  console.warn = (...args) => {
+    args.push(new Error().stack);
+    logger.warn.call(logger, ...args);
+  };
+  console.error = (...args) => {
+    args.push(new Error().stack);
+    logger.error.call(logger, ...args);
+  };
   console.debug = (...args) => logger.debug.call(logger, ...args);
 }
 
