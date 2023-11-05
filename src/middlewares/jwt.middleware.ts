@@ -8,7 +8,7 @@ let pubKey: Buffer;
 try {
   pubKey = fs.readFileSync(JWT_PUBLIC_KEY_PATH);
 } catch (e) {
-  logger.error(e);
+  console.error(e);
 }
 
 export const jwtMiddleware = (req: Request, res: Response, next: NextFunction) => {

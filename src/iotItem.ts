@@ -56,7 +56,7 @@ export class IOTItem {
           setTimeout(func, queryItem.interval);
         },
         error: function (error) {
-          logger.error(error);
+          console.error(error);
           rows = null;
         },
       });

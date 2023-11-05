@@ -48,7 +48,7 @@ export class IOT {
     });
 
     this.client.on('error', err => {
-      logger.error(err);
+      console.error(err);
     });
   }
 

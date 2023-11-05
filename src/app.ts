@@ -105,13 +105,13 @@ class App {
           logger.info('Presto/Trino connection success');
         },
         error: (error: any) => {
-          logger.error(error);
+          console.error(error);
           logger.info(`Cannot connect to Presto/Trino. Please check your .env.${this.env}.local file.`);
           process.exit();
         },
       });
     } catch (e) {
-      logger.error(e);
+      console.error(e);
     }
   }
 
@@ -129,7 +129,7 @@ class App {
       logger.info(`authorization: ${token}`);
       this.app.use(jwtMiddleware);
     } catch (e) {
-      logger.error(e);
+      console.error(e);
     }
   }
 

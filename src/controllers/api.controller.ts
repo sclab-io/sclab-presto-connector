@@ -55,7 +55,7 @@ class APIController {
     try {
       sql = this.mappingRequestData(sql, req.query, !!SQL_INJECTION);
     } catch (e) {
-      logger.error(e);
+      console.error(e);
       res.writeHead(400, {
         'Content-Type': 'application/json',
       });
@@ -71,7 +71,7 @@ class APIController {
       query: sql,
       state: function (error, query_id, stats) {
         if (error) {
-          logger.error(error);
+          console.error(error);
           next(error);
           return;
         }
@@ -79,7 +79,7 @@ class APIController {
       },
       columns: function (error, data) {
         if (error) {
-          logger.error(error);
+          console.error(error);
           next(error);
           return;
         }
@@ -87,7 +87,7 @@ class APIController {
       },
       data: function (error, data, columns, stats) {
         if (error) {
-          logger.error(error);
+          console.error(error);
           next(error);
           return;
         }
@@ -103,7 +103,7 @@ class APIController {
       },
       success: function (error, stats) {
         if (error) {
-          logger.error(error);
+          console.error(error);
           next(error);
           return;
         }
@@ -120,7 +120,7 @@ class APIController {
         rows = null;
       },
       error: function (error) {
-        logger.error(error);
+        console.error(error);
         rows = null;
         next(error);
       },
