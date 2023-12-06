@@ -1,5 +1,5 @@
 ## Trino
-[https://trino.io/docs/current/connector.html](Connector docs)
+[Connector docs](https://trino.io/docs/current/connector.html)
 
 ### How to add catalog file
 ~~~bash
