@@ -26,7 +26,7 @@ class APIController {
         }
       }
 
-      logger.info(queryData, valueObj, paramKeys);
+      logger.info(JSON.stringify({ queryData, valueObj, paramKeys }));
 
       // make final query
       return replaceString(query, valueObj);
