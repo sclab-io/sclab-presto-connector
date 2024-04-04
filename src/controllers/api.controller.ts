@@ -64,6 +64,7 @@ class APIController {
           message: 'SQL inject data detected.',
         }),
       );
+      return;
     }
 
     logger.info(`RUN SQL : ${sql}`);
