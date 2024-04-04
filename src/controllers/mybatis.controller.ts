@@ -1,14 +1,14 @@
 import { NextFunction, Request, Response } from 'express';
 import { QueryItem, PrestoClient, SQL_INJECTION } from '../config/index';
 import { logger } from '@/utils/logger';
-import { getPlaceHolders, hasSql, replaceString } from '@/utils/util';
+import { hasSql } from '@/utils/util';
 import MybatisMapper from 'mybatis-mapper';
 
 class APIController {
   public options: any = { language: 'sql', indent: '  ' };
   public queryItem?: QueryItem;
 
-  mappingRequestData(queryData: any, isCheckInjection: boolean = false): string {
+  mappingRequestData(queryData: any, isCheckInjection = false): string {
     // data mapping
     const valueObj = {};
     const paramKeys = Object.keys(queryData);
@@ -91,7 +91,7 @@ class APIController {
         }
         logger.debug(data);
       },
-      data: function (error, data, columns, stats) {
+      data: function (error, data, columns) {
         if (error) {
           console.error(error);
           next(error);

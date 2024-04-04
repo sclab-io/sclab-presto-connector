@@ -1,13 +1,11 @@
 import { MQTT_CLIENT_ID, MQTT_HOST, MQTT_ID, MQTT_PASSWORD, MQTT_TOPIC, QueryItem, QueryItems, QueryType } from './config';
-import { Routes } from './interfaces/routes.interface';
 import { IOTItem } from './iotItem';
-import APIRoute from './routes/api_route';
 import { logger } from './utils/logger';
 import mqtt from 'mqtt';
 
 export class IOT {
   client?: mqtt.MqttClient;
-  isStarted: boolean = false;
+  isStarted = false;
 
   init() {
     if (!(MQTT_HOST && MQTT_ID && MQTT_PASSWORD && MQTT_TOPIC && MQTT_CLIENT_ID)) {
@@ -55,11 +53,11 @@ export class IOT {
   start() {
     logger.info('Start MQTT');
 
-    for (let i: number = 0; i < QueryItems.length; i++) {
+    for (let i = 0; i < QueryItems.length; i++) {
       const queryItem: QueryItem = QueryItems[i];
       if (queryItem.type === QueryType.MQTT) {
         const iotItem: IOTItem = new IOTItem();
-        iotItem.init(this.client!, queryItem);
+        iotItem.init(this.client, queryItem);
       }
     }
   }

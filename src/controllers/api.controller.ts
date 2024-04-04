@@ -4,7 +4,7 @@ import { logger } from '@/utils/logger';
 import { getPlaceHolders, hasSql, replaceString } from '@/utils/util';
 
 class APIController {
-  mappingRequestData(query: string, queryData: any, isCheckInjection: boolean = false): string {
+  mappingRequestData(query: string, queryData: any, isCheckInjection = false): string {
     // data mapping
     const paramKeys = getPlaceHolders(query);
 
@@ -86,7 +86,7 @@ class APIController {
         }
         logger.debug(data);
       },
-      data: function (error, data, columns, stats) {
+      data: function (error, data, columns) {
         if (error) {
           console.error(error);
           next(error);

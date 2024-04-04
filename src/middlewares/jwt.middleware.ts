@@ -2,7 +2,6 @@ import { JWT_PUBLIC_KEY_PATH, SECRET_KEY } from '@/config';
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import fs from 'fs';
-import { logger } from '@/utils/logger';
 
 let pubKey: Buffer;
 try {

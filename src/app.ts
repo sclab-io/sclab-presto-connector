@@ -98,7 +98,7 @@ class App {
     try {
       PrestoClient.execute({
         query: 'select 1',
-        success: function (error: any, stats: any) {
+        success: function (error: any) {
           if (error) {
             return;
           }
@@ -136,7 +136,7 @@ class App {
   public createAPIRoutes(routes: Routes[]) {
     logger.info('Create API Routes');
 
-    for (let i: number = 0; i < QueryItems.length; i++) {
+    for (let i = 0; i < QueryItems.length; i++) {
       const queryItem: QueryItem = QueryItems[i];
       if (queryItem.type === QueryType.API) {
         const route: Routes = new APIRoute(queryItem);

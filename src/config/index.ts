@@ -1,4 +1,3 @@
-import { logger } from '@/utils/logger';
 import { config } from 'dotenv';
 import presto from 'presto-client';
 
@@ -94,7 +93,7 @@ BigInt.prototype['toJSON'] = function () {
   return parseInt(this.toString(), 10);
 };
 
-let prestoOptions: any = {
+const prestoOptions: any = {
   host: PRESTO_HOST,
   port: PRESTO_PORT,
   user: PRESTO_USER,
